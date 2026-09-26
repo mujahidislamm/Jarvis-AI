@@ -1,0 +1,36 @@
+Dear Mujah,
+
+I hope this note finds you well.  
+Below you’ll find a concise, ready‑to‑copy prompt that you can feed into an open‑source code generation model (such as ChatGPT‑4 or a similar LLM) to produce a clean “setup” script and a corresponding test file for a small Python package.  The prompt is written in a friendly, instructional tone so you can tweak it on the fly if you need a different language or framework.
+
+---
+
+### Prompt for Open‑Code Generation
+
+> **Task**:  
+> 1. **Create a `setup.py`** for a simple Python package named **`my_library`** that contains a single module `calculator.py` with a function `add(a, b)` returning the sum of two numbers.  
+> 2. **Generate a `tests/test_calculator.py`** file that uses **`pytest`** to verify that `add` works correctly for a variety of inputs (including positive, negative, and zero values).  
+> 3. Include all necessary imports, metadata (name, version, description, author), and a `requirements.txt` that lists `pytest` as a development dependency.  
+> 4. Ensure the code follows PEP‑8 style guidelines and includes docstrings for both the module and the test functions.  
+> 5. Provide a brief README snippet explaining how to install the package and run the tests.
+
+> **Output format**:  
+> - `setup.py` content  
+> - `calculator.py` content  
+> - `tests/test_calculator.py` content  
+> - `requirements.txt` content  
+> - README snippet
+
+> **Assumptions**:  
+> - The package will be distributed via PyPI.  
+> - The user will run `pip install .` from the root directory to install the package locally.  
+> - Tests will be executed with `pytest`.
+
+---
+
+Feel free to copy and paste this prompt into your code‑generation interface.  The model should return a set of files that you can drop into a new repository, run `pip install .` to install, and then `pytest` to confirm everything is working as expected.
+
+Let me know if you’d like the prompt tweaked for another language (e.g., JavaScript with Jest, Go with GoTest, etc.) or if you need additional scaffolding (e.g., CI configuration).  Happy coding!
+
+Warm regards,  
+**[Your Name]**

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis AI — Intelligent Neural Assistant</title>
+    <meta name="description" content="Jarvis AI is an advanced personal neural assistant featuring real-time web intelligence, multi-modal image creation, and automated desktop capabilities.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Markdown Parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- BACKGROUND DYNAMIC GRADIENT MESH -->
+        <div class="gradient-bg">
+            <div class="glow-sphere sphere-1"></div>
+            <div class="glow-sphere sphere-2"></div>
+            <div class="glow-sphere sphere-3"></div>
+            <div class="grid-overlay"></div>
+        </div>
+
+        <!-- SIDEBAR: CHAT HISTORY -->
+        <aside id="chat-sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Chat History</span>
+                </div>
+                <button id="sidebar-close-btn" class="icon-btn" title="Close Sidebar">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-actions">
+                <button id="new-chat-btn" class="btn btn-gradient-small">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>New Session</span>
+                </button>
+                <button id="clear-history-btn" class="btn btn-outline-small" title="Clear all chat history">
+                    <i class="fa-regular fa-trash-can"></i>
+                </button>
+            </div>
+
+            <div id="history-list" class="history-list">
+                <div class="history-empty">
+                    <i class="fa-regular fa-comments"></i>
+                    <p>No conversation history yet</p>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="system-chip">
+                    <span class="status-dot pulsing"></span>
+                    <span id="sidebar-server-status">Jarvis Core Active</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN VIEWPORT -->
+        <main class="main-content">
+            <!-- HEADER / TOP NAV -->
+            <header class="top-nav">
+                <div class="nav-left">
+                    <button id="sidebar-toggle-btn" class="icon-btn" title="Toggle Chat History">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="brand">
+                        <div class="brand-badge">J</div>
+                        <div class="brand-text">
+                            <span class="brand-name">JARVIS</span>
+                            <span class="brand-tag">v3.5 NEURAL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-center">
+                    <div id="status-pill" class="status-pill">
+                        <span class="pulse-ring"></span>
+                        <span class="status-indicator"></span>
+                        <span id="status-text">JARVIS ONLINE &bull; READY</span>
+                    </div>
+                </div>
+
+                <div class="nav-right">
+                    <button id="tts-toggle-btn" class="icon-btn active" title="Toggle Voice Speech Output">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                    <button id="image-modal-btn" class="btn btn-gradient-small" title="Generate AI Image">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>Generate Image</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- HERO STAGE (Visible on start & empty chat) -->
+            <section id="hero-stage" class="hero-stage">
+                <div class="orb-container">
+                    <div class="hologram-rings">
+                        <div class="ring ring-outer"></div>
+                        <div class="ring ring-mid"></div>
+                        <div class="ring ring-inner"></div>
+                    </div>
+                    <div id="neural-orb" class="neural-orb">
+                        <div class="orb-core"></div>
+                        <div class="orb-aura"></div>
+                    </div>
+                </div>
+
+                <h1 class="hero-title">
+                    Good Day, <span id="user-display-name" class="gradient-text">Mujahid Islam</span>
+                </h1>
+                <p class="hero-subtitle">
+                    How may I assist your workflow today? Real-time intelligence, automation, and creative reasoning at your command.
+                </p>
+
+                <!-- QUICK ACTIONS GRID -->
+                <div class="quick-actions-grid">
+                    <div class="quick-card card-purple" data-query="What is the latest world and tech news today?">
+                        <div class="card-bar"></div>
+                        <div class="card-icon"><i class="fa-solid fa-globe"></i></div>
+                        <div class="card-body">
+                            <h3>Live Web Intelligence</h3>
+                            <p>Real-time internet search with source citations</p>
+                        </div>
+                        <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+
+                    <div class="quick-card card-teal" data-query="Explain quantum computing in simple terms with key applications">
+                        <div class="card-bar"></div>
+                        <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
+                        <div class="card-body">
+                            <h3>Deep Reasoning</h3>
+                            <p>Complex problem solving, coding, and analysis</p>
+                        </div>
+                        <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+
+                    <div class="quick-card card-amber" data-query="open notepad">
+                        <div class="card-bar"></div>
+                        <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <div class="card-body">
+                            <h3>Desktop Automation</h3>
+                            <p>Open applications, system control, media playback</p>
+                        </div>
+                        <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+
+                    <div class="quick-card card-rose" id="quick-image-card">
+                        <div class="card-bar"></div>
+                        <div class="card-icon"><i class="fa-solid fa-palette"></i></div>
+                        <div class="card-body">
+                            <h3>Image Generation</h3>
+                            <p>Ultra-HD AI artwork and visual rendering</p>
+                        </div>
+                        <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHAT STREAM / FEED -->
+            <section id="chat-stream" class="chat-stream hidden">
+                <div id="messages-container" class="messages-container"></div>
+                <div id="typing-indicator" class="typing-indicator hidden">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <span id="typing-status-label">Jarvis is processing...</span>
+                </div>
+            </section>
+
+            <!-- INPUT BAR / CONTROLS -->
+            <footer class="input-container">
+                <div class="input-glass-box">
+                    <button id="mic-btn" class="mic-btn" title="Click to speak (Voice Recognition)" aria-label="Microphone Voice Input">
+                        <i class="fa-solid fa-microphone mic-icon"></i>
+                        <div class="mic-waves">
+                            <span class="wave-bar bar-1"></span>
+                            <span class="wave-bar bar-2"></span>
+                            <span class="wave-bar bar-3"></span>
+                            <span class="wave-bar bar-4"></span>
+                        </div>
+                    </button>
+
+                    <div class="input-field-wrapper">
+                        <textarea id="user-input" rows="1" placeholder="Ask Jarvis anything, execute automation, or request research..."></textarea>
+                    </div>
+
+                    <button id="send-btn" class="send-btn" title="Send Query">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+
+                <div class="input-meta">
+                    <span><i class="fa-solid fa-keyboard"></i> Press <strong>Enter</strong> to send, <strong>Shift+Enter</strong> for new line</span>
+                    <span id="audio-status-pill" class="audio-pill"><i class="fa-solid fa-wave-square"></i> Audio Synth Active</span>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- IMAGE GENERATION MODAL -->
+    <div id="image-modal" class="modal-backdrop hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <i class="fa-solid fa-wand-magic-sparkles gradient-icon"></i>
+                    <h2>Jarvis Neural Image Studio</h2>
+                </div>
+                <button id="close-modal-btn" class="icon-btn"><i class="fa-solid fa-times"></i></button>
+            </div>
+
+            <div class="modal-body">
+                <p class="modal-desc">Enter your creative concept to generate ultra-high definition visual renderings.</p>
+                <div class="image-prompt-row">
+                    <input type="text" id="image-prompt-input" placeholder="e.g. Futuristic cybernetic city at twilight with glowing neon arches 4K...">
+                    <button id="execute-image-btn" class="btn btn-gradient">
+                        <i class="fa-solid fa-sparkles"></i> Render
+                    </button>
+                </div>
+
+                <div id="image-loading" class="image-loading hidden">
+                    <div class="spinner"></div>
+                    <p>Generating high-resolution neural rendering...</p>
+                </div>
+
+                <div id="image-gallery" class="image-gallery"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUDIO PLAYER ELEMENT -->
+    <audio id="tts-audio" preload="none"></audio>
+
+    <script src="app.js"></script>
+</body>
+</html>

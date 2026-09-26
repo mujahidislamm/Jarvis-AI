@@ -1,0 +1,93 @@
+Dear Friend,
+
+I hope this letter finds you well and that you’re enjoying the ever‑fascinating world of programming. I heard you’re looking for a quick and clear example of the classic “Two‑Sum” problem in Python, and you’d like it to be presented in a friendly, letter‑style format. So here it is, wrapped up like a warm note and ready for you to copy, paste, and run.
+
+---
+
+### The Two‑Sum Problem
+
+> **Problem statement** – Given an array of integers `nums` and an integer `target`, return the indices of the two numbers that add up to `target`.  
+> Each input will have *exactly one solution*, and you may not use the same element twice.
+
+---
+
+### A Clean, Pythonic Solution
+
+Below is a straightforward implementation that uses a **hash table** (Python’s built‑in dictionary) to keep track of the numbers we’ve seen so far. The algorithm runs in linear time, O(n), and uses O(n) additional space.
+
+```python
+def two_sum(nums, target):
+    """
+    Find indices of the two numbers in `nums` that add up to `target`.
+
+    Parameters:
+        nums   (List[int]): List of integers.
+        target (int)      : The desired sum.
+
+    Returns:
+        List[int]         : A list containing the two indices.
+    """
+    # Map each number to its index as we iterate
+    seen = {}
+    for i, num in enumerate(nums):
+        complement = target - num
+        # If the complement is already in our map, we found a pair
+        if complement in seen:
+            return [seen[complement], i]
+        # Otherwise, remember this number's index
+        seen[num] = i
+
+    # According to the problem statement, this line is never reached,
+    # but it’s good practice to raise an informative error.
+    raise ValueError("No two sum solution found.")
+```
+
+#### How It Works
+
+1. **Initialize** an empty dictionary `seen`.  
+2. **Iterate** over `nums` with `enumerate` to keep track of both the index (`i`) and the value (`num`).  
+3. **Compute** the `complement` that would sum with `num` to reach `target`.  
+4. **Check** if the `complement` is already in `seen`.  
+   - If yes, we’ve found the pair: return the stored index and the current index.  
+5. **Store** the current number and its index in `seen`.  
+6. **Continue** until the loop ends.  
+7. If no pair is found (which shouldn’t happen given the problem’s guarantees), raise an error.
+
+---
+
+### A Quick Test
+
+```python
+if __name__ == "__main__":
+    # Example usage
+    array = [2, 7, 11, 15]
+    target_value = 9
+    result = two_sum(array, target_value)
+    print(f"Indices that sum to {target_value}: {result}")
+    # Expected output: Indices that sum to 9: [0, 1]
+```
+
+Running the snippet above will output:
+
+```
+Indices that sum to 9: [0, 1]
+```
+
+---
+
+### Why This Approach Is Elegant
+
+- **Time‑Efficient** – Each element is examined once; dictionary look‑ups are O(1).  
+- **Space‑Efficient** – We only store each element once in the dictionary.  
+- **Readable** – The logic flows naturally from “look for the complement” to “store what we’ve seen”.
+
+---
+
+I hope this little code snippet brings a smile to your face and helps you master the Two‑Sum problem. Feel free to tweak it, experiment with different inputs, or add unit tests to make it even more robust.
+
+Wishing you smooth coding and many more elegant solutions!
+
+Warm regards,
+
+**Mujah**  
+Your friendly content writer (and Python enthusiast)
